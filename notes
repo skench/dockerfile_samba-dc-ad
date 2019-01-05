@@ -1,0 +1,288 @@
+samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=SAMBA_INTERNAL --realm=901d99d24a7b.ARM-24.NET --domain=ARM-24 --adminpass=Qwerty123
+
+
+samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=SAMBA_INTERNAL --realm=ARM-24.NET --domain=ARM-24 --adminpass=Qwerty123
+
+не забыть hosts подправить
+
+vim /var/lib/samba/private/krb5.conf
+
+cp /var/lib/samba/private/krb5.conf /etc/krb5.conf
+
+
+
+mv /etc/krb5.conf /etc/krb5.conf_orig
+mv /etc/samba/smb.conf /etc/samba/smb.conf_orig
+
+
+
+
+
+[libdefaults]
+	default_realm = ARM-24.NET
+	dns_lookup_realm = false
+	dns_lookup_kdc = true
+
+[realms]
+	ARM-24.NET = {
+		kdc = debian9dc.arm-24.net
+		admin_server = debian9dc.arm-24.net
+		default_domain = ARM-24.NET
+	}
+
+[domain_realm]
+	.ARM-24.NET = ARM-24.NET
+	ARM-24.NET = ARM-24.NET
+
+[logging]
+	default = FILE:/var/log/krb5.log
+
+
+
+
+
+[global]
+	netbios name = DEBIAN9DC
+	realm = ARM-24.NET
+	workgroup = ARM-24
+	dns forwarder = 91.232.132.10
+	server role = active directory domain controller
+	idmap_ldb:use rfc2307 = yes
+
+[netlogon]
+	path = /var/lib/samba/sysvol/arm-24.net/scripts
+	read only = No
+
+[sysvol]
+	path = /var/lib/samba/sysvol
+	read only = No
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+root@debian9dc:~# cat .bash_history
+vi /etc/ssh/sshd_config
+shutdown -h now
+apt-get update && apt-get upgrade
+vi /etc/hosts
+vi /etc/network/interfaces
+apt install samba winbind libpam-winbind libnss-winbind samba-dsdb-modules smbclient
+cp /etc/samba/smb.conf /etc/samba/smb.conf_orig
+ls /etc/samba/
+ls /etc/
+apt install libpam-krb5 krb5-config krb5-user krb5-kdc
+ls /etc/krb5kdc/
+vi /etc/krb5kdc/kdc.conf
+cp /etc/krb5kdc/kdc.conf /etc/krb5kdc/kdc.conf_orig
+ls /etc/samba/
+service krb5-kdc stop
+service krb5-kdc disable
+service krb5-kdc status
+service krb5-kdc stop
+systemctl stop krb5-kdc
+systemctl disable krb5-kdc
+samba-tool domain provision --use-rfc2307 --interactive
+rm -f /etc/samba/smb.conf
+samba-tool domain provision --use-rfc2307 --interactive
+systemctl start krb5-kdc
+systemctl stop\ krb5-kdc
+systemctl stop krb5-kdc
+ls /etc/krb5.conf
+cat /etc/krb5.conf
+mv /etc/krb5.conf /etc/krb5.conf_orig
+cp /var/lib/samba/private/krb5.conf /etc/krb5.conf
+smbclient -L localhost -U%
+systemctl start krb5-kdc
+cat /etc/krb5.conf
+cat /etc/resolv.conf
+vi /etc/resolv.conf
+vi /etc/hosts
+vi /etc/krb5.conf
+vi /etc/krb5.conf_orig
+vi /etc/krb5.conf
+vi /etc/krb5.conf_orig
+mv /etc/krb5.conf /etc/krb5.conf_orig2
+mv /etc/krb5.conf_orig /etc/krb5.conf
+systemctl start krb5-kdc
+systemctl start krb5-kdc
+journalctl -xe
+smbclient --version
+smbclient -L localhost -U%
+kinit administrator@debian9dc.arm-24.net
+vi /etc/krb5.conf
+find / -name "kdc.conf"
+vi /usr/share/doc/krb5-kdc/examples/kdc.conf
+samba
+smbclient -L localhost -U%
+ls /var/lib/samba/private/
+cat /var/lib/samba/private/idmap.ldb
+ldsearch
+smbclient -L localhost -U%
+cat /etc/krb5.conf
+samba-tool domain info 127.0.0.1
+smbclient -L localhost -Uadministrator
+apt-get install task-samba-dc
+vi /etc/resolv.conf
+reboot
+smbclient -L localhost -Uadministrator
+cp /etc/krb5.conf_orig2 /etc/samba/krb5.conf
+smbclient -L localhost -Uadministrator
+cat /etc/samba/krb5.conf
+samba
+cat /etc/samba/krb5.conf
+smbclient -L localhost -Uadministrator
+systemctl status krb5-kdc.service
+kinit administrator
+tail -F /var/log/samba/log.wb-ARM-24
+ls
+cd /etc/samba/
+ls
+vi smb.conf
+exit
+cat /etc/hosts
+cat /etc/samba/krb5.conf
+cat /etc/krb5.conf
+ls
+ls /etc/
+mv /etc/krb5.conf /etc/krb5.conf_orig1
+systemctl status krb5-kdc.service
+smbclient -L localhost -Uadministrator
+reboot
+smbclient -L localhost -Uadministrator
+cp /etc/samba/krb5.conf /etc/krb5.conf
+reboot
+smbclient //localhost/netlogon -UAdministrator -c 'ls'
+ss -4
+nets-ant
+netstat -ant
+netstat
+netstat
+ss-4
+ss-4
+id
+mc
+ss -4
+ss -4a
+ss
+ss
+smbclient -L localhost -Uadministrator
+smbclient -L localhost -Uadministrator
+vi /etc/krb5.conf
+reboot
+man ss
+netstats
+netstat
+ss -4
+cd /var/log/
+ks
+ls
+ls -l
+ss -4a
+cd samba/
+ls
+ps -axuw
+ps -axuw | samb
+service samba start
+ls
+cat log.samba
+ls
+smbclient -L localhost -Uadministrator
+vi /etc/samba/smb.conf
+smbclient -L localhost -U%
+ls
+mv /etc/krb5.conf /etc/krb5.conf_orig3
+mv /etc/krb5.conf_orig1 /etc/krb5.conf
+reboot
+cd /var/log/samba/
+ls
+cat log.smbd
+samba
+cat log.samba
+cat log.samba
+smbclient -L localhost -U%
+vi /etc/samba/krb5.conf
+vi /etc/krb5.conf
+samba
+vi /etc/samba/krb5.conf
+smbclient -L localhost -U%
+mv /etc/krb5.conf /etc/krb5.conf_orig1
+cat /etc/krb5.conf_orig3
+:q
+mv /etc/krb5.conf_orig3 /etc/krb5.conf
+reboot
+netstat
+netstat -ant
+ps -axuw
+ps -axuw
+ps -axuw
+cd /var/log/
+cd /etc/samba/
+ls
+cat krb5.conf
+cat smb.conf
+cd /var/log/samba/
+ls
+tail -f cores/
+tail -f cores
+tail -f log.samba
+exit
+smbclient -L localhost -U%
+samba
+smbclient -L localhost -U%
+ss -4
+netstat -tulpn | egrep "samba|smbd|nmbd|winbind"
+apt-get install net-tools
+netstat -tulpn | egrep "samba|smbd|nmbd|winbind"
+smbclient //localhost/netlogon -UAdministrator -c 'ls'
+kinit administrator
+klist
+klist
+exit
+shutdown -h now
+netstat -tulpn | egrep "samba|smbd|nmbd|winbind"
+samba
+netstat -tulpn | egrep "samba|smbd|nmbd|winbind"
+smbclient //localhost/netlogon -UAdministrator -c 'ls'
+klist
+smbclient -L localhost -U%
+wbinfo -u
+exit
+pdbedit -u
+pdbedit -u administrator -v
+pdbedit -u -?
+pdbedit -u
+pdbedit -u -L
+p
+kinit administrator@debian9dc.arm-24.net
+kinit administrator@arm-24.net
+smbclient -L localhost -U%
+kinit administrator@arm-24
+kinit administrator@ARM-24.NET
+klist
+exit
+vi .bash_history
+netstat -tulpn | egrep "samba|smbd|nmbd|winbind"
+ss -4
+cat /etc/krb5.conf
+vim /etc/krb5.conf
+vi /etc/krb5.conf
+exit
+vi /etc/samba/smb.conf
+hostname
+cat /etc/samba/smb.conf
+vi .bash_history
+ls /tmp/
+exit
+cat /etc/krb5.conf
+cat /etc/samba/smb.conf
+exit
+root@debian9dc:~#
+
+

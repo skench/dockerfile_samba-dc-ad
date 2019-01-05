@@ -1,0 +1,18 @@
+[libdefaults]
+        default_realm = ARM-24.NET
+        dns_lookup_realm = false
+        dns_lookup_kdc = true
+
+[realms]
+        ARM-24.NET = {
+                kdc = debian9dc.arm-24.net
+                admin_server = debian9dc.arm-24.net
+                default_domain = ARM-24.NET
+        }
+
+[domain_realm]
+        .ARM-24.NET = ARM-24.NET
+        ARM-24.NET = ARM-24.NET
+
+[logging]
+        default = FILE:/var/log/krb5.log
